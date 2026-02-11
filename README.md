@@ -1,68 +1,33 @@
 # Brazilian Document Classification
 
-Train a document category model to classify Brazilian document types (e.g. CNH, CPF, RG, etc.) using 60% of the dataset for training and 40% for testing.
+Classify Brazilian document types (CNH, CPF, RG, etc.) using a ResNet18 model. **Plan:** 60% training, 40% held-out testing.
 
-## Setup
+## Kaggle Notebook
 
-```bash
-cd brazillian_document_recongnition
-python -m venv venv
-venv\Scripts\activate   # Windows
-pip install -r requirements.txt
+Use `brazilian_document_classifier.ipynb` on Kaggle:
+
+1. Upload the notebook to [Kaggle Notebooks](https://www.kaggle.com/code)
+2. Add your dataset as Input (or use a public Brazilian document dataset)
+3. Set `DATA_PATH` in the notebook (e.g. `/kaggle/input/your-dataset-name`)
+4. Enable **GPU** in Settings → Accelerator
+5. Run all cells
+
+### Dataset Structure
+
 ```
-
-## Dataset Structure
-
-Place your raw dataset in:
-
-```
-data/raw/
+your-dataset/
   CNH/        # National Driver's License
   CPF/        # Tax ID document
   RG/         # General Registration
-  ...         # other document types (8–9 total)
+  ...         # 8–9 document types total
 ```
 
-Each folder should contain images (`.jpg`, `.png`, etc.) of that document type.
+Each folder = one document type, containing images (`.jpg`, `.png`, etc.).
 
-## Usage
+### Output
 
-### 1. Split dataset (60% train / 40% test)
-
-```bash
-python split_data.py
-```
-
-### 2. Train model
-
-```bash
-python train.py
-```
-
-### 3. Evaluate on held-out test set
-
-```bash
-python evaluate.py
-```
-
-## Project Structure
-
-```
-brazillian_document_recongnition/
-├── config.py          # Configuration
-├── split_data.py      # 60/40 split
-├── train.py           # Training (60% of data)
-├── evaluate.py        # Test accuracy (40% held-out)
-├── src/
-│   ├── dataset.py     # Dataset & transforms
-│   └── model.py       # ResNet18 classifier
-├── data/              # Created by split_data.py
-│   ├── raw/           # Place your dataset here
-│   ├── train/         # 60% training
-│   └── test/          # 40% testing
-├── checkpoints/       # Saved models
-└── requirements.txt
-```
+- Trained model saved to `/kaggle/working/document_classifier.pt`
+- Test accuracy reported on the 40% held-out set
 
 ## License
 
