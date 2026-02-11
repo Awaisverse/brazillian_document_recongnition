@@ -1,0 +1,34 @@
+# Data
+data/raw/
+data/train/
+data/test/
+*.zip
+
+# Model checkpoints
+checkpoints/
+*.pt
+*.pth
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Results
+results/
+*.png
+*.jpg
+
+# OS
+.DS_Store
+Thumbs.db
